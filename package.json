@@ -21,11 +21,11 @@
     "vite": "^7.1.12",
     "vitest": "^4.0.7"
   },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "server": "json-server --watch db.json --port 4000",
-    "test": "vitest",
-    "preview": "vite preview"
-  }
+ "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "server": "json-server --watch db.json --port 4000",
+  "test": "vitest run",
+  "preview": "vite preview"
+}
 }
