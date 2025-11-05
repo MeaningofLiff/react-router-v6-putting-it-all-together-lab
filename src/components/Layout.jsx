@@ -1,15 +1,20 @@
-// src/components/Layout.jsx
 import { NavLink, Outlet } from "react-router-dom";
+import { directors as seed } from "../data";
 
 const linkBase = {
-  marginRight: 12,
-  padding: "6px 10px",
+  padding: "8px 12px",
   borderRadius: 6,
   textDecoration: "none",
-  fontWeight: 600,
+  marginRight: 8,
+  display: "inline-block",
+  fontSize: 14,
 };
 
 export default function Layout() {
+  // If you plan to add forms later, you can lift this to state:
+  // const [directors, setDirectors] = useState(seed);
+  const directors = seed;
+
   return (
     <div>
       <nav
@@ -62,9 +67,11 @@ export default function Layout() {
       </nav>
 
       <div style={{ padding: 16 }}>
-        <Outlet />
+        {/* 👇 expose data to all nested routes */}
+        <Outlet context={{ directors }} />
       </div>
     </div>
   );
 }
+ 
  

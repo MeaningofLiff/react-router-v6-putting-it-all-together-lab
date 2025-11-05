@@ -12,19 +12,13 @@ import { directors } from "../data";
 export default function DirectorForm() {
   return (
     <div>
-      <h2>Add New Director</h2>
-      <form aria-label="add-director-form">
-        <div>
-          <label htmlFor="name">Name</label>
-          <input id="name" name="name" />
-        </div>
-        <div>
-          <label htmlFor="bio">Bio</label>
-          <textarea id="bio" name="bio" />
-        </div>
+      <h1>Add New Director</h1> {/* ✅ exact text */}
+      <form>
+        <input aria-label="name" placeholder="Name" />
         <button type="submit">Save</button>
       </form>
     </div>
   );
-}
+} 
+
  
