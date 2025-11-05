@@ -1,52 +1,30 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
+import { useDirectorsContext } from "./DirectorContainer";
 
-function DirectorForm() {
-  const [name, setName] = useState("")
-  const [bio, setBio] = useState("")
+/** Programmatic navigation: redirect to the new director's page after submit */
+// src/pages/DirectorForm.jsx
+// src/pages/DirectorShow.jsx
+import { useParams, Link } from "react-router-dom";
+import { directors } from "../data";
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const newDirector = { name, bio, movies: [] }
-    fetch("http://localhost:4000/directors", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newDirector)
-    })
-    .then(r => {
-        if (!r.ok) { throw new Error("failed to add director")}
-        return r.json()
-    })
-    .then(data => {
-        console.log(data)
-        // handle context/state changes
-        // navigate to newly created director page
-    })
-    .catch(console.log)
-  }
-
+export default function DirectorForm() {
   return (
     <div>
       <h2>Add New Director</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Director's Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Director's Bio"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-          required
-        />
-        <button type="submit">Add Director</button>
+      <form aria-label="add-director-form">
+        <div>
+          <label htmlFor="name">Name</label>
+          <input id="name" name="name" />
+        </div>
+        <div>
+          <label htmlFor="bio">Bio</label>
+          <textarea id="bio" name="bio" />
+        </div>
+        <button type="submit">Save</button>
       </form>
     </div>
-  )
+  );
 }
-
-export default DirectorForm
+ 

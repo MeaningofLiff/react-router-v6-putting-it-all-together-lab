@@ -1,28 +1,37 @@
+import { Link, Outlet, useOutletContext, useParams } from "react-router-dom";
 
-function DirectorCard() {
-    // Replace me
-    const director = null
+export default function DirectorCard() {
+  const { id } = useParams();
+  const { directors } = useOutletContext();
 
-    if (!director) {
-        return <h2>Director not found.</h2>
-    }
+  const director = directors?.find((d) => String(d.id) === String(id));
+  if (!director) return <h2>Director not found.</h2>;
 
-    return (
-        <div>
-        <h2>{director.name}</h2>
-        <p>{director.bio}</p>
-        <h3>Movies:</h3>
+  return (
+    <div>
+      <h2>{director.name}</h2>
+      {director.bio && <p>{director.bio}</p>}
+
+      <h3>Movies</h3>
+      {director.movies?.length ? (
         <ul>
-            {director.movies.map((movie) => (
-            <li key={movie.id}>
-                <a>{movie.title}</a>
+          {director.movies.map((m) => (
+            <li key={m.id}>
+              <Link to={`movies/${m.id}`}>{m.title}</Link>
             </li>
-            ))}
+          ))}
         </ul>
-        <Link to={`movies/new`}>Add New Movie</Link>
-        {/* Movie compoenents should render here depending on route */}
-        </div>
-    )
-}
+      ) : (
+        <p>No movies yet.</p>
+      )}
 
-export default DirectorCard
+      <p>
+        <Link to={`movies/new`}>Add a movie</Link>
+      </p>
+
+      {/* Pass this director down to MovieList/MovieForm/MovieCard */}
+      <Outlet context={{ director }} />
+    </div>
+  );
+}
+ 

@@ -1,23 +1,13 @@
-import NavBar from "../components/NavBar"
+import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
-function Home() {
+// src/pages/Home.jsx
+export default function Home() {
   return (
-    <>
-      <NavBar />
-      <main>
-        <h1>🎬 Welcome to the Movie Directory 🎥</h1>
-        <p>
-          Explore a collection of famous directors and their iconic movies. Click
-          below to start exploring!
-        </p>
-        <nav>
-          {/* add links for directors page and about page */}
-          <a>View Directors</a> |{" "}
-          <a>Learn More About This App</a>
-        </nav>
-      </main>
-    </>
-  )
+    <div>
+      <h1>Welcome to the Movie Directory</h1>
+      <p>Browse directors and their films.</p>
+    </div>
+  );
 }
-
-export default Home
+ 
