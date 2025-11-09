@@ -1,32 +1,32 @@
+// src/App.jsx
 import { Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout.jsx";
-import Home from "./pages/Home.jsx";
-import About from "./pages/About.jsx";
-import Directors from "./pages/Directors.jsx";
-import DirectorForm from "./pages/DirectorForm.jsx";
-import DirectorCard from "./pages/DirectorCard.jsx";
-import MovieForm from "./pages/MovieForm.jsx";
-import MovieCard from "./pages/MovieCard.jsx";
+import Layout from "./layout/Layout";          // or "./layouts/Layout" if you renamed
+import Home from "./pages/Home";
+import About from "./pages/About";
+import DirectorContainer from "./pages/DirectorContainer";
+import Directors from "./pages/Directors";
+import DirectorForm from "./pages/DirectorForm";
+import DirectorCard from "./pages/DirectorCard";
+import MovieForm from "./pages/MovieForm";
+import MovieCard from "./pages/MovieCard";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
 
-        <Route path="directors">
+        <Route path="directors" element={<DirectorContainer />}>
           <Route index element={<Directors />} />
           <Route path="new" element={<DirectorForm />} />
-
-          <Route path=":directorId">
-            <Route index element={<DirectorCard />} />
-            <Route path="movies">
-              <Route path="new" element={<MovieForm />} />
-              <Route path=":movieId" element={<MovieCard />} />
-            </Route>
-          </Route>
+          <Route path=":directorId" element={<DirectorCard />} />
+          <Route path=":directorId/movies/new" element={<MovieForm />} />
+          <Route path=":directorId/movies/:movieId" element={<MovieCard />} />
         </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

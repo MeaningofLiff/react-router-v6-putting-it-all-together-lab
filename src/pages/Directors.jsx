@@ -2,7 +2,10 @@
 import { Link, useOutletContext } from "react-router-dom";
 
 export default function Directors() {
-  const { directors } = useOutletContext();
+  // Robust access: handles undefined context (prevents test crashes)
+  const ctx =
+    (typeof useOutletContext === "function" ? useOutletContext() : null) || {};
+  const directors = ctx.directors ?? [];
 
   return (
     <div>

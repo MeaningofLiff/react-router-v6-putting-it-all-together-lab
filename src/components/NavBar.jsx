@@ -12,7 +12,8 @@ const linkStyle = ({ isActive }) => ({
 
 export default function NavBar() {
   return (
-    <nav role="navigation" style={{ padding: 12, borderBottom: "1px solid #ddd", marginBottom: 16 }}>
+    <nav role="navigation" aria-label="Main"
+         style={{ padding: 12, borderBottom: "1px solid #ddd", marginBottom: 16 }}>
       <NavLink to="/" style={linkStyle}>Home</NavLink>
       <NavLink to="/directors" style={linkStyle}>Directors</NavLink>
       <NavLink to="/directors/new" style={linkStyle}>Add Director</NavLink>
