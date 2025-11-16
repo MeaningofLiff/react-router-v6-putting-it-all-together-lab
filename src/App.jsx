@@ -1,5 +1,5 @@
 // src/App.jsx
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Layout from "./layout/Layout";          // or "./layouts/Layout" if you renamed
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -13,6 +13,8 @@ import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
+
+     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
@@ -29,6 +31,8 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
+
+     </BrowserRouter> 
   );
 }
  
